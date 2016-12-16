@@ -6,7 +6,7 @@ import { syncHistoryWithStore } from 'react-router-redux';
 import configureStore from './store/configureStore';
 import AppContainer from './containers/AppContainer.jsx';
 import OverviewContainer from './containers/OverviewContainer.jsx';
-import CarsContainer from './containers/CarsContainer.jsx';
+import AuthenticationContainer from './containers/AuthenticationContainer.jsx';
 
 const mount = document.getElementById('app');
 
@@ -20,7 +20,7 @@ if (mount) {
 			<Router history={history}>
 				<Route path="/" component={AppContainer}>
 					<IndexRoute component={OverviewContainer} />
-					<Route path="/cars" component={CarsContainer} />
+					<Route path="/authentication" component={AuthenticationContainer} />
 				</Route>
 			</Router>
 		</Provider>

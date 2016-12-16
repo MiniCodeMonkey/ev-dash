@@ -11,7 +11,6 @@ class SideBarContainer extends React.Component {
 			<div className="col-sm-3 col-md-2 sidebar">
 				<ul className="nav nav-sidebar">
 					<MenuItem title="Overview" path="/" active={this.props.path === '/'} onClick={this.goToUrl} />
-					<MenuItem title="Cars" path="/cars" active={this.props.path === '/cars'} onClick={this.goToUrl} />
 					<MenuItem title="Analytics" path="/analytics" active={this.props.path === '/analytics'} onClick={this.goToUrl} />
 					<MenuItem title="Achievements" path="/achievements" active={this.props.path === '/achievements'} onClick={this.goToUrl} />
 				</ul>
@@ -19,6 +18,9 @@ class SideBarContainer extends React.Component {
 					<MenuItem title="Logs" path="/logs" active={this.props.path === '/logs'} onClick={this.goToUrl} />
 					<MenuItem title="Schedules" path="/schedules" active={this.props.path === '/schedules'} onClick={this.goToUrl} />
 					<MenuItem title="Triggers" path="/triggers" active={this.props.path === '/triggers'} onClick={this.goToUrl} />
+				</ul>
+				<ul className="nav nav-sidebar">
+					<MenuItem title="Authentication" path="/authentication" active={this.props.path === '/authentication'} onClick={this.goToUrl} />
 				</ul>
 	        </div>
 		);
