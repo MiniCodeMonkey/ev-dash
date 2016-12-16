@@ -1,24 +1,20 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { push } from 'react-router-redux';
-import { Grid, Row, Col } from 'react-bootstrap';
+import { Row } from 'react-bootstrap';
+import SideBarContainer from './SideBarContainer';
 
 class AppContainer extends React.Component {
 
 	render() {
 		return (
-			<div>
-				Test
-			</div>
+			<Row>
+		        <SideBarContainer />
+		        <div className="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+		            {this.props.children}
+		        </div>
+		    </Row>
 		);
 	}
 
 }
 
-function select(state, props) {
-	return {
-
-	};
-}
-
-export default connect(select)(AppContainer);
+export default AppContainer;

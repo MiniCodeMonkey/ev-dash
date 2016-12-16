@@ -5,18 +5,26 @@ import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 import configureStore from './store/configureStore';
 import AppContainer from './containers/AppContainer.jsx';
+import OverviewContainer from './containers/OverviewContainer.jsx';
+import CarsContainer from './containers/CarsContainer.jsx';
 
-const initialState = window.__INITIAL_STATE__ || {};
-const store = configureStore(initialState);
-const history = syncHistoryWithStore(browserHistory, store);
+const mount = document.getElementById('app');
 
-const reactComponent = (
-	<Provider store={store}>
-		<Router history={history}>
-			<Route path="/" component={AppContainer}>
-			</Route>
-		</Router>
-	</Provider>
-);
+if (mount) {
+	const initialState = window.__INITIAL_STATE__ || {};
+	const store = configureStore(initialState);
+	const history = syncHistoryWithStore(browserHistory, store);
 
-render(reactComponent, document.getElementById('app'));
+	const reactComponent = (
+		<Provider store={store}>
+			<Router history={history}>
+				<Route path="/" component={AppContainer}>
+					<IndexRoute component={OverviewContainer} />
+					<Route path="/cars" component={CarsContainer} />
+				</Route>
+			</Router>
+		</Provider>
+	);
+
+	render(reactComponent, mount);
+}

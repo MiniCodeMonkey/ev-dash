@@ -12,5 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view(Auth::check() ? 'app' : 'landing');
 });
+
+Auth::routes();
