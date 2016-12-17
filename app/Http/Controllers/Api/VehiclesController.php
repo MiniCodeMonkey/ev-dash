@@ -25,7 +25,7 @@ class VehiclesController extends Controller
             $user = $request->user();
             $user->vehicles()->delete();
 
-            foreach ($response->response as $entry) {
+            foreach ($response as $entry) {
                 $vehicle = new Vehicle();
                 $vehicle->tesla_id = $entry->id_s;
                 $vehicle->name = $entry->display_name;
