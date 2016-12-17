@@ -21,7 +21,7 @@ class AuthenticationContainer extends React.Component {
 			<div>
 				<div className="alert alert-success"><i className="fa fa-check"></i> You are authenticated with "My Tesla"</div>
 				<p><a href="#" onClick={this.handleDisconnect}>Disconnect and remove authentication token {this.props.isAuthenticatingWithTesla ? ( <i className="fa fa-cog fa-spin"></i> ) : ( <i className="fa fa-trash"></i> )}</a></p>
-				<p><strong>Note:</strong> This will disable all EV Dash functionality</p>
+				<p><strong>Note:</strong> This will disable all evcontrol functionality</p>
 			</div>
 		);
 	}
@@ -70,7 +70,7 @@ class AuthenticationContainer extends React.Component {
 					We use the provided credentials to authenticate and retrieve and access token from Tesla, your email/password is then v discarded and it is never stored on our servers
 				</Panel>
 				<Panel header="What happens after I connect?">
-					Shortly after connecting your Tesla account to EV Dash we will start retrieving and visualize your driving, charging and climate data. We will <strong>only</strong> perform API calls that reads data, unless you explicitly configure EV Dash to do otherwise.
+					Shortly after connecting your Tesla account to evcontrol we will start retrieving and visualize your driving, charging and climate data. We will <strong>only</strong> perform API calls that reads data, unless you explicitly configure evcontrol to do otherwise.
 				</Panel>
 			</div>
 		);

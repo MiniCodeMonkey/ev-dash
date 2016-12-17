@@ -1,4 +1,4 @@
-# EV Dash
+# evcontrol
 
 ## Development environment
 ### Install dependencies
