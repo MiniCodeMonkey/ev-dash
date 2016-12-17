@@ -11,8 +11,19 @@
 |
 */
 
+Route::group(['middleware' => 'auth'], function () {
+
+	Route::post('api/v1/connect/tesla', 'Api\ConnectController@connectTesla');
+	Route::delete('api/v1/connect/tesla', 'Api\ConnectController@disconnectTesla');
+
+	// Let React handle the routing
+	Route::any('{anything?}', function () {
+		return view('app');
+	});
+});
+
 Route::get('/', function () {
-    return view(Auth::check() ? 'app' : 'landing');
+    return view('landing');
 });
 
 Auth::routes();

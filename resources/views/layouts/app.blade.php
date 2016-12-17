@@ -12,6 +12,7 @@
     <title>EV Dashboard</title>
 
     <link rel="stylesheet" type="text/css" href="{{ elixir('css/app.css') }}">
+    <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -20,7 +21,7 @@
     <![endif]-->
 
     <script>
-        window.Laravel = <?php echo json_encode([
+        window.App = <?php echo json_encode([
             'csrfToken' => csrf_token(),
         ]); ?>
     </script>
