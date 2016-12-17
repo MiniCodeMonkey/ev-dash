@@ -26,7 +26,7 @@ class ConnectController extends Controller
 
             return response()->json(['success' => true]);
         } catch (Exception $e) {
-            info('connectTesla error: ' . $e->getMessage());
+            info('ConnectController@connectTesla error: ' . $e->getMessage());
 
             return response()->json(['success' => false]);
         }

@@ -52,7 +52,10 @@ class TeslaClient
     private function createClient() {
         $client = new Client([
             'timeout' => 2.0,
-            'base_uri' => self::BASE_URL
+            'base_uri' => self::BASE_URL,
+            'headers' => [
+                'Authorization' => 'Bearer ' . $this->accessToken
+            ]
         ]);
 
         return $client;

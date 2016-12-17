@@ -7883,6 +7883,18 @@ body {
   border-radius: 50%;
 }
 
+.sidebar .dropdown {
+  margin-bottom: 1em;
+}
+
+.sidebar .dropdown, .sidebar .dropdown-toggle {
+  width: 100%;
+}
+
+.sidebar .dropdown-menu {
+  width: 100%;
+}
+
 .footer {
   padding-top: 40px;
   padding-bottom: 40px;

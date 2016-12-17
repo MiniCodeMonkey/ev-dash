@@ -95,3 +95,17 @@ body {
   display: inline-block;
   border-radius: 50%;
 }
+
+.sidebar {
+  .dropdown {
+    margin-bottom: 1em;
+  }
+
+  .dropdown, .dropdown-toggle {
+    width: 100%;
+  }
+
+  .dropdown-menu {
+    width: 100%;
+  }
+}

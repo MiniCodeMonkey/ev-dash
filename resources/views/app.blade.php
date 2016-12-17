@@ -6,12 +6,6 @@
 </div>
 
 <script>
-window.__INITIAL_STATE__ = <?php echo json_encode([
-    'user' => [
-    	'email' => Auth::user()->email,
-    	'name' => Auth::user()->name,
-    	'hasValidAccessToken' => Auth::user()->tesla_access_token !== null
-    ]
-]); ?>
+window.__INITIAL_STATE__ = {!! json_encode($initialState) !!}
 </script>
 @endsection

@@ -15,11 +15,11 @@ Route::group(['middleware' => 'auth'], function () {
 
 	Route::post('api/v1/connect/tesla', 'Api\ConnectController@connectTesla');
 	Route::delete('api/v1/connect/tesla', 'Api\ConnectController@disconnectTesla');
+	Route::get('api/v1/vehicles', 'Api\VehiclesController@list');
+	Route::post('api/v1/vehicles', 'Api\VehiclesController@refresh');
 
 	// Let React handle the routing
-	Route::any('{anything?}', function () {
-		return view('app');
-	});
+	Route::any('{anything?}', 'AppController@render');
 });
 
 Route::get('/', function () {
