@@ -43,7 +43,9 @@ class TeslaClient
 
     private function handleResponse($response) {
         if ($response->getStatusCode() === 200) {
-            return json_decode($response->getBody());
+            $result = json_decode($response->getBody());
+
+            return $result->response;
         } else {
             throw new RuntimeException($response->getStatusCode() . ' ' . $response->getReasonPhrase());
         }
@@ -51,7 +53,7 @@ class TeslaClient
 
     private function createClient() {
         $client = new Client([
-            'timeout' => 2.0,
+            'timeout' => 10.0,
             'base_uri' => self::BASE_URL,
             'headers' => [
                 'Authorization' => 'Bearer ' . $this->accessToken

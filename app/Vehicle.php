@@ -2,7 +2,6 @@
 
 namespace App;
 
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Model;
 
 class Vehicle extends Model
@@ -21,6 +20,18 @@ class Vehicle extends Model
     ];
 
     public function owner() {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function chargeLogs() {
+        return $this->hasMany(LogCharge::class);
+    }
+
+    public function climateLogs() {
+        return $this->hasMany(LogClimate::class);
+    }
+
+    public function drivingLogs() {
+        return $this->hasMany(LogDriving::class);
     }
 }
