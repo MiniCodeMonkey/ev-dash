@@ -9,6 +9,11 @@ class AppController extends Controller
 {
     public function render(Request $request) {
         $user = $request->user();
+
+        if (!$user) {
+            return view('landing');
+        }
+
         $firstVehicle = $user->vehicles()->first();
 
         $initialState = [
