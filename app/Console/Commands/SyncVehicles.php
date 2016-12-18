@@ -48,9 +48,20 @@ class SyncVehicles extends Command
         foreach ($vehicles as $vehicle) {
             $user = $vehicle->owner;
 
-            if ($user->tesla_access_token) {
-                $client = new TeslaClient($user->tesla_access_token);
+            if (!$user->tesla_access_token) {
+                continue;
+            }
 
+            $client = new TeslaClient($user->tesla_access_token);
+
+            $vehicleData = collect($client->listVehicles())->where('id_s', $vehicle->tesla_id)->first();
+
+            if (!$vehicleData) {
+                $vehicle->delete();
+            } elseif ($vehicleData->state !== 'online') {
+                info('Vehicle #' . $vehicle->id . ': State is ' . $vehicleData->state);
+            } else {
+                info('Vehicle #' . $vehicle->id . ': Syncing');
                 $this->syncChargeState($vehicle, $client);
                 $this->syncClimateState($vehicle, $client);
                 $this->syncDriveState($vehicle, $client);
