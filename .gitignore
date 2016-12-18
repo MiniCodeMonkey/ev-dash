@@ -1,6 +1,7 @@
 /node_modules
 /public/storage
 /public/build
+/public/js
 /storage/*.key
 /vendor
 /.idea

@@ -1,4 +1,4 @@
-# evcontrol
+# EV Control
 
 ## Development environment
 ### Install dependencies
