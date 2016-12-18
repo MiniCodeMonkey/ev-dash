@@ -22,3 +22,40 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'remember_token' => str_random(10),
     ];
 });
+
+/** @var \Illuminate\Database\Eloquent\Factory $factory */
+$factory->define(App\Vehicle::class, function (Faker\Generator $faker) {
+    return [
+        'tesla_id' => 12345,
+        'name' => $faker->name,
+        'vin' => 'ABC123',
+        'option_codes' => ''
+    ];
+});
+
+/** @var \Illuminate\Database\Eloquent\Factory $factory */
+$factory->define(App\LogCharge::class, function (Faker\Generator $faker) {
+    return [
+        'charging_state' => 'Disconnected',
+        'charge_limit_soc' => 90
+    ];
+});
+
+/** @var \Illuminate\Database\Eloquent\Factory $factory */
+$factory->define(App\LogClimate::class, function (Faker\Generator $faker) {
+    return [
+        'inside_temp' => 12.34,
+        'fan_status' => 4
+    ];
+});
+
+/** @var \Illuminate\Database\Eloquent\Factory $factory */
+$factory->define(App\LogDriving::class, function (Faker\Generator $faker) {
+    return [
+        'shift_state' => 'D',
+        'speed' => 10,
+        'latitude' => 38.5,
+        'longitude' => -77.10,
+        'heading' => 180
+    ];
+});

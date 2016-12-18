@@ -23,7 +23,12 @@ class VehiclesController extends Controller
             $response = $client->listVehicles();
 
             $user = $request->user();
-            $user->vehicles()->delete();
+
+            $teslaIds = collect($response)->map(function ($vehicle) {
+                return $vehicle->id_s;
+            })->all();
+
+            $user->vehicles()->whereNotIn('tesla_id', $teslaIds)->delete();
 
             foreach ($response as $entry) {
                 $vehicle = new Vehicle();
@@ -44,6 +49,19 @@ class VehiclesController extends Controller
 
     public function list(Request $request) {
         return $request->user()->vehicles;
+    }
+
+    public function current(Request $request, $vehicleId) {
+        $vehicle = $request->user()->vehicles()->find($vehicleId);
+        if (!$vehicle) {
+            abort(404);
+        }
+
+        return [
+            'charge' => $vehicle->chargeLogs()->orderBy('created_at', 'DESC')->first(),
+            'climate' => $vehicle->climateLogs()->orderBy('created_at', 'DESC')->first(),
+            'driving' => $vehicle->drivingLogs()->orderBy('created_at', 'DESC')->first()
+        ];
     }
 
 }
