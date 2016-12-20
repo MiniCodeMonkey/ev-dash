@@ -91,7 +91,7 @@ class SyncVehicles extends Command
         return false;
     }
 
-    private function generateGroupId($vehicle) {
+    private function generateGroupId() {
         return Uuid::uuid4();
     }
 
