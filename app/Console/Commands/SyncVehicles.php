@@ -81,9 +81,9 @@ class SyncVehicles extends Command
         $lastState = $vehicle->drivingLogs()->orderBy('created_at', 'DESC')->first();
 
         if ($lastState) {
-            $mostRecentUpdateLongerThanSlowPollingInterval = $lastState->created_at->diffInSeconds() > self::SLOW_POLLING_INTERVAL_SECONDS;
+            $alreadyUpdatedRecently = $lastState->created_at->diffInSeconds() < self::SLOW_POLLING_INTERVAL_SECONDS;
             
-            if ($lastState->shift_state === 'D' || $mostRecentUpdateLongerThanSlowPollingInterval) {
+            if ($lastState->shift_state === 'D' || $alreadyUpdatedRecently) {
                 return true;
             }
         }
