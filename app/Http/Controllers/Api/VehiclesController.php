@@ -51,17 +51,15 @@ class VehiclesController extends Controller
         return $request->user()->vehicles;
     }
 
-    public function current(Request $request, $vehicleId) {
-        $vehicle = $request->user()->vehicles()->find($vehicleId);
-        if (!$vehicle) {
-            abort(404);
-        }
-
-        return [
-            'charge' => $vehicle->chargeLogs()->orderBy('created_at', 'DESC')->first(),
-            'climate' => $vehicle->climateLogs()->orderBy('created_at', 'DESC')->first(),
-            'driving' => $vehicle->drivingLogs()->orderBy('created_at', 'DESC')->first()
-        ];
+    public function current(Request $request) {
+        return $request->user()->vehicles->map(function (Vehicle $vehicle) {
+            return [
+                'id' => $vehicle->id,
+                'charge' => $vehicle->chargeLogs()->orderBy('created_at', 'DESC')->take(10)->get(),
+                'climate' => $vehicle->climateLogs()->orderBy('created_at', 'DESC')->take(10)->get(),
+                'driving' => $vehicle->drivingLogs()->orderBy('created_at', 'DESC')->take(10)->get()
+            ];
+        });
     }
 
 }

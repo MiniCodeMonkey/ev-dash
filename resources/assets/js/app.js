@@ -4,9 +4,10 @@ import { Provider } from 'react-redux';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 import configureStore from './store/configureStore';
-import AppContainer from './containers/AppContainer.jsx';
-import OverviewContainer from './containers/OverviewContainer.jsx';
-import AuthenticationContainer from './containers/AuthenticationContainer.jsx';
+import AppContainer from './containers/AppContainer';
+import OverviewContainer from './containers/OverviewContainer';
+import AuthenticationContainer from './containers/AuthenticationContainer';
+import { refreshCurrentData } from './actions/vehiclesActions';
 
 const mount = document.getElementById('app');
 
@@ -27,4 +28,9 @@ if (mount) {
 	);
 
 	render(reactComponent, mount);
+
+	store.dispatch(refreshCurrentData());
+	setInterval(() => {
+		store.dispatch(refreshCurrentData());
+	}, 30000);
 }

@@ -109,3 +109,16 @@ body {
     width: 100%;
   }
 }
+
+.page-overview {
+  .progressbar {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .placeholder > .fa {
+    width: 200px;
+    height: 200px;
+    font-size: 200px;
+  }
+}

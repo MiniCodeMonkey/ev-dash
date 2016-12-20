@@ -25,7 +25,8 @@ class AppController extends Controller
             'vehicles' => [
                 'vehicles' => $user->vehicles,
                 'isLoading' => false,
-                'selectedVehicleId' => $firstVehicle ? $firstVehicle->id : null
+                'selectedVehicleId' => $firstVehicle ? $firstVehicle->id : null,
+                'currentData' => []
             ]
         ];
 

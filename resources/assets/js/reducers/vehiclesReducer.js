@@ -1,10 +1,16 @@
 import update from 'react-addons-update';
-import { ACTION_DID_START_VEHICLES_REQUEST, ACTION_COMPLETED_VEHICLES_REQUEST, ACTION_SELECT_VEHICLE } from '../actions/userActions';
+import {
+	ACTION_DID_START_VEHICLES_REQUEST,
+	ACTION_COMPLETED_VEHICLES_REQUEST,
+	ACTION_SELECT_VEHICLE,
+	ACTION_UPDATE_CURRENT_DATA
+} from '../actions/vehiclesActions';
 
 const initialState = {
 	vehicles: [],
 	isLoading: false,
-	selectedVehicleId: null
+	selectedVehicleId: null,
+	currentData: []
 };
 
 function vehiclesReducer(state = initialState, action) {
@@ -29,6 +35,11 @@ function vehiclesReducer(state = initialState, action) {
 				$merge: {
 					selectedVehicleId: action.vehicleId
 				}
+			});
+
+		case ACTION_UPDATE_CURRENT_DATA:
+			return update(state, {
+				currentData: {$set: action.currentData}
 			});
 
 		default:

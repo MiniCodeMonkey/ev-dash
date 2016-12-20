@@ -31,11 +31,13 @@ class VehiclesApiTest extends TestCase
         $driving = factory(App\LogDriving::class)->create(['vehicle_id' => $vehicle->id]);
 
         $this->actingAs($user)
-             ->json('GET', '/api/v1/vehicles/' . $vehicle->id . '/current')
+             ->json('GET', '/api/v1/vehicles/current')
              ->seeJsonStructure([
-                'charge' => ['charging_state', 'charge_limit_soc'],
-                'climate' => ['inside_temp', 'fan_status'],
-                'driving' => ['shift_state', 'speed', 'latitude', 'longitude', 'heading'],
+                '*' => [
+                    'charge' => ['charging_state', 'charge_limit_soc'],
+                    'climate' => ['inside_temp', 'fan_status'],
+                    'driving' => ['shift_state', 'speed', 'latitude', 'longitude', 'heading'],
+                ]
             ]);
     }
 }
