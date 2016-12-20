@@ -7,6 +7,7 @@ import configureStore from './store/configureStore';
 import AppContainer from './containers/AppContainer';
 import OverviewContainer from './containers/OverviewContainer';
 import AuthenticationContainer from './containers/AuthenticationContainer';
+import LogsContainer from './containers/LogsContainer';
 import { refreshCurrentData } from './actions/vehiclesActions';
 
 const mount = document.getElementById('app');
@@ -22,6 +23,7 @@ if (mount) {
 				<Route path="/" component={AppContainer}>
 					<IndexRoute component={OverviewContainer} />
 					<Route path="/authentication" component={AuthenticationContainer} />
+					<Route path="/logs" component={LogsContainer} />
 				</Route>
 			</Router>
 		</Provider>
