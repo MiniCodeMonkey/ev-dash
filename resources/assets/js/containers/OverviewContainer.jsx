@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import { Grid, Row, Col } from 'react-bootstrap';
 import { Circle } from 'react-progressbar.js';
+import { Map, Marker, Popup, TileLayer } from 'react-leaflet';
 
 class OverviewContainer extends React.Component {
 
@@ -61,18 +62,40 @@ class OverviewContainer extends React.Component {
                         <span className="text-muted">{data.driving[0].shift_state || 'Off' }</span>
                     </div>
                 </div>
+
+                {this.renderMap(data.driving[0])}
             </div>
 		);
 	}
+
+    renderMap = lastDrivingEntry => {
+        const position = [parseFloat(lastDrivingEntry.latitude), parseFloat(lastDrivingEntry.longitude)];
+
+        return (
+            <Map center={position} zoom={16}>
+                <TileLayer
+                    url='//map.geocod.io/osm/{z}/{x}/{y}.png'
+                    attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                    />
+                <Marker position={position}>
+                    <Popup>
+                        <span>{this.props.currentVehicle.name || this.props.currentVehicle.vin}</span>
+                    </Popup>
+                </Marker>
+            </Map>
+        );
+    }
 
 }
 
 function select(state, props) {
     const currentVehicleId = state.vehicles.selectedVehicleId;
     const currentVehicleData = _.find(state.vehicles.currentData, vehicle => vehicle.id === currentVehicleId);
+    const currentVehicle = _.find(state.vehicles.vehicles, vehicle => vehicle.id === currentVehicleId);
 
     return {
-        currentVehicleData
+        currentVehicleData,
+        currentVehicle
     };
 }
 
