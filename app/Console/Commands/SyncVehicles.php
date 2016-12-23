@@ -78,12 +78,15 @@ class SyncVehicles extends Command
     }
 
     private function shouldSkipDataCollection(Vehicle $vehicle) {
-        $lastState = $vehicle->drivingLogs()->orderBy('created_at', 'DESC')->first();
+        $lastDrivingState = $vehicle->drivingLogs()->orderBy('created_at', 'DESC')->first();
+        $lastChargingState = $vehicle->chargeLogs()->orderBy('created_at', 'DESC')->first();
 
-        if ($lastState) {
-            $alreadyUpdatedRecently = $lastState->created_at->diffInSeconds() < self::SLOW_POLLING_INTERVAL_SECONDS;
+        if ($lastDrivingState && $lastChargingState) {
+            $isDriving = $lastDrivingState->shift_state === 'D';
+            $isCharging = $lastChargingState->charging_state === 'Charging';
+            $alreadyUpdatedRecently = $lastDrivingState->created_at->diffInSeconds() < self::SLOW_POLLING_INTERVAL_SECONDS;
             
-            if ($lastState->shift_state !== 'D' && $alreadyUpdatedRecently) {
+            if (!$isDriving && !$isCharging && $alreadyUpdatedRecently) {
                 return true;
             }
         }
