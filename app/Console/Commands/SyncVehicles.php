@@ -83,7 +83,7 @@ class SyncVehicles extends Command
         if ($lastState) {
             $alreadyUpdatedRecently = $lastState->created_at->diffInSeconds() < self::SLOW_POLLING_INTERVAL_SECONDS;
             
-            if ($lastState->shift_state === 'D' || $alreadyUpdatedRecently) {
+            if ($lastState->shift_state !== 'D' && $alreadyUpdatedRecently) {
                 return true;
             }
         }

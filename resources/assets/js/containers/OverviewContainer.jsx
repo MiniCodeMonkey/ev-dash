@@ -43,7 +43,7 @@ class OverviewContainer extends React.Component {
                             initialAnimate={true}
                             containerStyle={containerStyle}
                             containerClassName={'progressbar'} />
-                        <h4>SOC</h4>
+                        <h4>SoC</h4>
                         <span className="text-muted">Current state of charge</span>
                     </div>
                     <div className="col-xs-6 col-sm-3 placeholder">
