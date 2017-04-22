@@ -10,25 +10,25 @@ class AppController extends Controller
     public function render(Request $request) {
         $user = $request->user();
 
-        if (!$user) {
-            return view('landing');
+        if ($user) {
+            $firstVehicle = $user->vehicles()->first();
+
+            $initialState = [
+                'user' => [
+                    'email' => $user->email,
+                    'name' => $user->name,
+                    'hasValidAccessToken' => $user->tesla_access_token !== null
+                ],
+                'vehicles' => [
+                    'vehicles' => $user->vehicles,
+                    'isLoading' => false,
+                    'selectedVehicleId' => $firstVehicle ? $firstVehicle->id : null,
+                    'currentData' => []
+                ]
+            ];
+        } else {
+            $initialState = null;
         }
-
-        $firstVehicle = $user->vehicles()->first();
-
-        $initialState = [
-            'user' => [
-                'email' => $user->email,
-                'name' => $user->name,
-                'hasValidAccessToken' => $user->tesla_access_token !== null
-            ],
-            'vehicles' => [
-                'vehicles' => $user->vehicles,
-                'isLoading' => false,
-                'selectedVehicleId' => $firstVehicle ? $firstVehicle->id : null,
-                'currentData' => []
-            ]
-        ];
 
         return view('app', ['initialState' => $initialState]);
     }

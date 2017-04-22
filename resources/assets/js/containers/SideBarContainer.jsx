@@ -14,13 +14,20 @@ class SideBarContainer extends React.Component {
 				{this.props.hasValidAccessToken ? this.renderVehicles() : ''}
 				{this.props.isLoadingVehicles ? ( <i className="fa fa-refresh fa-spin"></i> ) : ''}
 				<ul className="nav nav-sidebar">
-					<SideBarItem title="Overview" path="/" active={this.props.path === '/'} onClick={this.goToUrl} />
-					<SideBarItem title="Analytics" path="/analytics" active={this.props.path === '/analytics'} onClick={this.goToUrl} />
-					<SideBarItem title="Achievements" path="/achievements" active={this.props.path === '/achievements'} onClick={this.goToUrl} />
+					<SideBarItem title="Chargers" path="/" active={this.props.path === '/'} onClick={this.goToUrl} />
+					<SideBarItem title="Car" path="/car" active={this.props.path === '/car'} onClick={this.goToUrl} />
+					{
+						//<SideBarItem title="Analytics" path="/analytics" active={this.props.path === '/analytics'} onClick={this.goToUrl} />
+					}
+					{
+						//<SideBarItem title="Achievements" path="/achievements" active={this.props.path === '/achievements'} onClick={this.goToUrl} />
+					}
 				</ul>
 				<ul className="nav nav-sidebar">
 					<SideBarItem title="Logs" path="/logs" active={this.props.path === '/logs'} onClick={this.goToUrl} />
-					<SideBarItem title="Triggers" path="/triggers" active={this.props.path === '/triggers'} onClick={this.goToUrl} />
+					{
+						//<SideBarItem title="Triggers" path="/triggers" active={this.props.path === '/triggers'} onClick={this.goToUrl} />
+					}
 				</ul>
 				<ul className="nav nav-sidebar">
 					<SideBarItem title="Authentication" path="/authentication" active={this.props.path === '/authentication'} onClick={this.goToUrl} />

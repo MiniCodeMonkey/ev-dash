@@ -11,8 +11,6 @@
 |
 */
 
-Route::get('/', 'AppController@render');
-
 Auth::routes();
 
 Route::group(['middleware' => 'auth'], function () {
@@ -21,7 +19,10 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('api/v1/vehicles', 'Api\VehiclesController@list');
 	Route::post('api/v1/vehicles', 'Api\VehiclesController@refresh');
 	Route::get('api/v1/vehicles/current', 'Api\VehiclesController@current');
-
-	// Let React handle the routing
-	Route::any('{anything?}', 'AppController@render');
 });
+
+// Unathenticated API routes
+Route::get('api/v1/chargers', 'Api\ChargersController@list');
+
+// Let React handle everything else
+Route::any('{anything?}', 'AppController@render');
